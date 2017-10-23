@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+</head>
+<body>
+
+  <p> Hi, <%=  @user.lastname %></p>
+
+  <p>You from <%= @user.country %>,<%= @user.city %></p>
+
+  <p>And you live in house with number <%= @user.housenumber %></p>
+
+  <p>We know all about you. Remember this.</p>
+
+<%= link_to "Logout", user_path, method: :delete, :class =>"btn btn-danger" %>
+
+</body>
+
+</html>
