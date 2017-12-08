@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>My homepage</title>
-  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-</head>
-<body>
-<h1>Welcome to my awesome site</h1>
+<%= link_to "Create New Post", new_post_path , class: "btn btn-default"%>
 
-<p>There are nothing now, but by the way you can registr and have account on my site</p>
-
-<%= link_to "Registration",   new_user_path, :class =>"btn btn-info"  %> or
-<%= link_to "Login", login_path, :class =>"btn btn-info" %>
-
-</body>
-</html>
+<% @posts.each do |post| %>
+	<h1><%= link_to post.title , post_path(post.id)%></h1>
+	<p>
+		Autor:<%= post.user.nickname %> |
+		Creeated at:<%= post.created_at %>
+		Update at:<%= post.updated_at %>
+	</p>
+	<p><%= post.body %></p>
+	<% if current_user != nil and current_user.id == post.user_id %>
+		<%= link_to "Edit", edit_post_path(post.id) %>
+		<%= link_to "Delete", post_path(post.id), data: {confim: 'Are you sure?'}, method: :delete %>
+	<% end %>
+<% end %>
